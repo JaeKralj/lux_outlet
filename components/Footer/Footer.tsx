@@ -6,7 +6,7 @@ export default function Footer({}: propTypes) {
   return (
     <footer className='bg-white relative z-[10000] pt-3 pb-10 md:hidden'>
       <CustomFrag>
-        <div className='px-3 flex items-center justify-between'>
+        <nav className='px-3 flex items-center justify-between'>
           <ul className='flex items-center gap-5 flex-1'>
             <li>
               <Link
@@ -63,7 +63,7 @@ export default function Footer({}: propTypes) {
               <span className='text-[rgb(255_255_255_/0.70)]'>3 items</span>
             </div>
           </div>
-        </div>
+        </nav>
       </CustomFrag>
     </footer>
   )
