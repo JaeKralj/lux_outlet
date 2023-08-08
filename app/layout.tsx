@@ -1,6 +1,5 @@
 import Footer from '@/components/Footer/Footer'
 import { TailwindIndicator } from '@/components/dev/TailwindIndicator'
-import { cn } from '@/utils'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
@@ -14,18 +13,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: { item: string }
 }) {
+  
   return (
     <html lang='en'>
-      <body
-        className={cn(montserrat.className, 'flex flex-col justify-between')}
-      >
+      <body className={montserrat.className}>
         {/* <Header /> */}
-        {children}
+        <main className='page'>{children}</main>
         <TailwindIndicator />
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   )

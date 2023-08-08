@@ -10,7 +10,7 @@ import Image from 'next/image'
 export default function page({}: propTypes) {
   const item = DUMMY_INVENTORY[0]
   return (
-    <div className='flex-1 grow'>
+    <div>
       <div className='hidden md:block'>
         <Header>
           <HomeHeader />

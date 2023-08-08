@@ -4,8 +4,18 @@
 
 body {
   background-color: #f3f3f3;
-}
+  min-height: 100vh;
+  /* fallback */
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
 
+  display: flex;
+  flex-flow: column;
+}
+.page {
+  flex: 1;
+}
 * {
   border-radius: inherit;
 }
