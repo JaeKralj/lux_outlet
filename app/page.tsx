@@ -1,9 +1,13 @@
+'use client'
+
 import CategoryCard from '@/components/CategoryCard'
 import Header from '@/components/Headers/Header'
 import HomeHeader from '@/components/Headers/HomeHeader'
 import ProductCard from '@/components/ProductCard'
+import Button from '@/components/ui/Button'
 import CustomFrag from '@/components/ui/CustomFrag'
 import { DUMMY_INVENTORY, categories } from '@/data'
+import { signIn } from 'next-auth/react'
 
 export default function Home() {
   const headingClasses = 'text-black text-lg font-semibold md:text-xl mb-2'
@@ -30,6 +34,7 @@ export default function Home() {
                 <ProductCard name={name} price={price} image={image} />
               ))}
             </div>
+            <Button onClick={() => signIn()}>Sign In</Button>
           </section>
         </div>
       </CustomFrag>
