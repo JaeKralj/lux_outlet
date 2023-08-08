@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Other({}: propTypes) {
+export default function Other({pathName}: propTypes) {
+  
   return (
     <div className='flex flex-col items-center justify-center'>
       <div>
@@ -18,11 +19,13 @@ export default function Other({}: propTypes) {
             alt='prev icon'
           />
         </Link>
-        <p className='mx-auto text-lg md:text-xl font-bold'>PathName</p>
+        <p className='mx-auto text-lg md:text-xl font-bold'>{pathName}</p>
         <Image src='/icons/filter.svg' width={24} height={24} alt='filter' />
       </div>
     </div>
   )
 }
 
-type propTypes = {}
+type propTypes = {
+  pathName: string
+}

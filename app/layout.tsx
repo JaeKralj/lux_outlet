@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer/Footer'
 import { TailwindIndicator } from '@/components/dev/TailwindIndicator'
+import { cn } from '@/utils'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
@@ -18,11 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={montserrat.className}>
+      <body
+        className={cn(montserrat.className, 'flex flex-col justify-between')}
+      >
         {/* <Header /> */}
         {children}
         <TailwindIndicator />
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   )

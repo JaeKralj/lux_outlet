@@ -4,7 +4,7 @@ import CustomFrag from '../ui/CustomFrag'
 
 export default function Footer({}: propTypes) {
   return (
-    <footer className='bg-white relative z-[10000] pt-3 pb-10 md:hidden'>
+    <footer className='bg-white relative z-[10000] pt-3 md:hidden'>
       <CustomFrag>
         <nav className='px-3 flex items-center justify-between'>
           <ul className='flex items-center gap-5 flex-1'>
