@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/firebase-adapter": "^1.0.0",
+    "@next-auth/firebase-adapter": "^2.0.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.14.5",
     "@types/node": "20.4.7",
@@ -16,7 +18,10 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "clsx": "^2.0.0",
+    "firebase": "^10.1.0",
+    "firebase-admin": "^11.10.1",
     "next": "13.4.12",
+    "next-auth": "^4.22.4",
     "next-sanity": "^5.2.0",
     "next-sanity-image": "^6.1.0",
     "postcss": "8.4.27",
@@ -27,6 +32,7 @@
     "styled-components": "5.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "use-indexeddb": "^2.0.2"
   }
 }

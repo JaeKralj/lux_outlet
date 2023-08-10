@@ -27,8 +27,8 @@ export default function page({ params }: propTypes) {
           <p>143</p>
         </div>
         <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-          {DUMMY_INVENTORY.map(({ name, price, image }) => (
-            <ProductCard {...{ name, price, image }} />
+          {DUMMY_INVENTORY.map(({ name, price, image, sku, id }) => (
+            <ProductCard {...{ name, price, image, sku, id }} />
           ))}
         </div>
       </CustomFrag>

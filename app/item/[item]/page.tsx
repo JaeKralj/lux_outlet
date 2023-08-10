@@ -65,7 +65,7 @@ export default function page({}: propTypes) {
 
             <div className='hidden md:block md:flex items-center justify-between'>
               <Button>Add to cart</Button>
-              <LikeBtn />
+              <LikeBtn item={{ name: item.name, id: item.id, sku: item.sku }} />
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function page({}: propTypes) {
             alt='arrow_back'
           />
           <Button>Add to cart</Button>
-          <LikeBtn />
+          <LikeBtn item={{ name: item.name, id: item.id, sku: item.sku }} />
         </div>
       </CustomFrag>
     </div>
