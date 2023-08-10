@@ -11,7 +11,7 @@ export default function ProductCard({
 }: propTypes) {
   return (
     <div className='md:w-80 relative flex items-center'>
-      <Link href='/' className='block'>
+      <Link href={`/item/${name}?id=${id}`} className='block'>
         <div className='mb-7 w-full rounded-xl bg-background shadow-lg p-4'>
           <div className='relative rounded-[inherit]'>
             <div className='bg-gradient-30deg from-background-100 to-background-200 from[39.01%] to-[96.15%] rounded-r-xl text-white w-11 text-sm p-1 absolute top-7 -ml-4 rounded-l-none'>

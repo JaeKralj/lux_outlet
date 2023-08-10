@@ -40,7 +40,9 @@ export default function page({}: propTypes) {
                 tabs={item.colors.map((color, i) => ({
                   title: color,
                   content: <p key={i}>{color}</p>,
+                  slug: color.toLowerCase(),
                 }))}
+                group='color'
               />
             </div>
             <div className='my-3'>
@@ -52,7 +54,9 @@ export default function page({}: propTypes) {
                 tabs={item.sizes.map((size, i) => ({
                   title: size,
                   content: <p key={i}>{size}</p>,
+                  slug: size.toLowerCase(),
                 }))}
+                group='size'
               />
             </div>
 

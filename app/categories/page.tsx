@@ -4,17 +4,13 @@ import { categories } from '@/data'
 
 export default function page({}: propTypes) {
   return (
-    <>
-      <div className='mt-16'>
-        <CustomFrag>
-          <div className='flex flex-wrap gap-3 justify-center md:justify-normal p-4'>
-            {categories.map(({ image, title, path }) => (
-              <CategoryCard path={path} image={image} title={title} />
-            ))}
-          </div>
-        </CustomFrag>
+    <CustomFrag>
+      <div className='flex flex-wrap gap-3 justify-center md:justify-normal p-4'>
+        {categories.map(({ image, title, path }) => (
+          <CategoryCard path={path} image={image} title={title} />
+        ))}
       </div>
-    </>
+    </CustomFrag>
   )
 }
 
