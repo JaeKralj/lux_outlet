@@ -1,5 +1,3 @@
-import Header from '@/components/Headers/Header'
-import HomeHeader from '@/components/Headers/HomeHeader'
 import Button from '@/components/ui/Button'
 import CustomFrag from '@/components/ui/CustomFrag'
 import LikeBtn from '@/components/ui/LikeBtn'
@@ -11,11 +9,6 @@ export default function page({}: propTypes) {
   const item = DUMMY_INVENTORY[0]
   return (
     <div>
-      <div className='hidden md:block'>
-        <Header>
-          <HomeHeader />
-        </Header>
-      </div>
       <CustomFrag className='mt-16'>
         <div className='grid lg:grid-cols-2 grid-cols-1 rounded-b-lg shadow-md'>
           <div className=''>
