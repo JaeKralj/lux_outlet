@@ -2,7 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import LikeBtn from './ui/LikeBtn'
 
-export default function ProductCard({ image, name, price }: propTypes) {
+export default function ProductCard({
+  image,
+  name,
+  price,
+  id,
+  sku,
+}: propTypes) {
   return (
     <div className='md:w-80 relative flex items-center'>
       <Link href='/' className='block'>
@@ -37,7 +43,7 @@ export default function ProductCard({ image, name, price }: propTypes) {
         </div>
       </Link>
       <div className='right-2 bottom-24 absolute'>
-        <LikeBtn />
+        <LikeBtn item={{ name: name, id, sku }} />
       </div>
     </div>
   )
@@ -47,4 +53,6 @@ type propTypes = {
   price: number
   name: string
   image: string
+  id: string
+  sku: string
 }

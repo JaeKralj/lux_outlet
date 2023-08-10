@@ -18,7 +18,7 @@ export default function HomeHeader({}: propTypes) {
       <Link href='/' className='text-lg font-bold text-white'>
         <span className='text-background-200'>Lux</span>Outlet
       </Link>
-      <Link href='/' className='flex-1 text-right flex justify-end'>
+      <Link href='/saved' className='flex-1 text-right flex justify-end'>
         <Image src='/icons/like.svg' width={24} height={24} alt='like' />
       </Link>
     </div>

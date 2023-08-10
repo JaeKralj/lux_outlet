@@ -30,8 +30,15 @@ export default function Home() {
           <section id='featured' className='max-w-5xl mx-auto w-full my-3'>
             <h2 className={headingClasses}>Featured</h2>
             <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-              {DUMMY_INVENTORY.map(({ name, price, image }) => (
-                <ProductCard name={name} price={price} image={image} />
+              {DUMMY_INVENTORY.map(({ name, price, image, id, sku }) => (
+                <ProductCard
+                  name={name}
+                  price={price}
+                  image={image}
+                  id={id}
+                  sku={sku}
+                  key={id}
+                />
               ))}
             </div>
             <Button onClick={() => signIn()}>Sign In</Button>
