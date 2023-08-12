@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Headers/Header'
+import Providers from '@/components/Providers'
 import { TailwindIndicator } from '@/components/dev/TailwindIndicator'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={montserrat.className}>
-        <Header />
-        <main className='page'>{children}</main>
-        <TailwindIndicator />
-        <Footer />
+        <Providers>
+          <Header />
+          <main className='page'>{children}</main>
+          <TailwindIndicator />
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

@@ -9,8 +9,8 @@ export default function Page({}: propTypes) {
         <h1 className='text-3xl font-bold tracking-tight sm:text-4xl'>
           Shopping Cart
         </h1>
-        <form className='mt-12 lg:grid lg:grid-cols-7 lg:items-start lg:gap-x-12 xl:gap-x-16'>
-          <section aria-labelledby='cart-heading' className='lg:col-span-4'>
+        <form className='mt-12 lg:flex lg:items-start lg:gap-x-12 xl:gap-x'>
+          <section aria-labelledby='cart-heading' className='lg:basis-2/3'>
             <h2 id='cart-heading' className='sr-only'>
               Items in your shopping cart
             </h2>

@@ -34,6 +34,10 @@ export default function CustomTabs({ tabs, variant, group }: propTypes) {
   const activeTabIndex = query
     ? tabs.findIndex(({ slug }) => slug === query)
     : 0
+
+  /**
+   * ? Return the active tab to parent with a setstate function prop
+   */
   return (
     <Tabs defaultIndex={activeTabIndex}>
       <TabList className='flex items-center gap-3'>

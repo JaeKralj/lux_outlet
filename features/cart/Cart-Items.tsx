@@ -6,16 +6,26 @@ import Link from 'next/link'
 
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
-import { DUMMY_INVENTORY } from '@/data'
+import { useShoppingCart } from 'use-shopping-cart'
+import { Product } from 'use-shopping-cart/core'
+import { CartItemsEmpty } from './CartEmpty'
+
 export default function CartItems({}: propTypes) {
-  function removeCartItem() {}
+  const { cartDetails, setItemQuantity, removeItem } = useShoppingCart()
+  const cartItems = Object.entries(cartDetails!).map(([_, product]) => product)
+
+  if (cartItems.length === 0) return <CartItemsEmpty />
+
+  function removeCartItem(product: Product) {
+    removeItem(product.id)
+  }
 
   return (
     <ul
       role='list'
       className='divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-500 dark:border-gray-500'
     >
-      {DUMMY_INVENTORY.map((product, productIdx) => (
+      {cartItems.map((product: any, productIdx) => (
         <li
           key={'key'}
           className='flex py-6 sm:py-10 shadow-md rounded-md my-3'
@@ -56,9 +66,14 @@ export default function CartItems({}: propTypes) {
                   name={`quantity-${productIdx}`}
                   type='number'
                   className='w-16'
+                  min={1}
+                  value={product.quantity}
+                  onChange={event =>
+                    setItemQuantity(product.id, Number(event.target.value))
+                  }
                 />
                 <Button
-                  onClick={removeCartItem}
+                  onClick={()=>removeCartItem(product)}
                   type='button'
                   className='-mr-2 inline-flex p-2'
                 >

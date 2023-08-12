@@ -1,4 +1,5 @@
 'use client'
+import FooterCartSummary from '@/features/cart/FooterCartSummary'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -55,18 +56,7 @@ export default function Footer({}: propTypes) {
               </Link>
             </li>
           </ul>
-          <div className='bg-gradient-30deg w-28 p-3 flex from-background-100 to-background-200 from-30% to-70% rounded-l-3xl -mr-3 absolute right-0 -top-7'>
-            <Image
-              src='/icons/cart.svg'
-              alt='cart Icon'
-              width={30}
-              height={30}
-            />
-            <div className='text-white text-xs'>
-              <p>$234</p>
-              <span className='text-[rgb(255_255_255_/0.70)]'>3 items</span>
-            </div>
-          </div>
+          <FooterCartSummary />
         </nav>
       </CustomFrag>
     </footer>
