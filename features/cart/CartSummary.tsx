@@ -66,7 +66,7 @@ export default function CartSummary() {
               currency: 'USD',
             })}
           </dd>
-        </div>
+        </div>p
       </dl>
 
       <div className='mt-6'>

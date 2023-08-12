@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import LikeBtn from './ui/LikeBtn'
@@ -9,6 +10,7 @@ export default function ProductCard({
   id,
   sku,
 }: propTypes) {
+  console.log({ image, name, price, id, sku })
   return (
     <div className='md:w-80 relative flex items-center'>
       <Link href={`/item/${name}?id=${id}`} className='block'>

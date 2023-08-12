@@ -7,28 +7,28 @@ const categories: {
   slug: string
 }[] = [
   {
-    title: 'ALl Womens',
+    title: 'Bags',
     image: '/images/women.jpg',
-    slug: 'all-womens',
-    path: '/clothing?category=all-womens',
+    slug: 'bags',
+    path: '/clothing?category=bags',
   },
   {
-    path: '/clothing?category=new-collection',
-    title: 'New Collections',
+    path: '/clothing?category=scarves',
+    title: 'Scarves',
     image: '/images/new_arrival.png',
-    slug: 'new-collection',
+    slug: 'scarves',
   },
   {
-    path: '/clothing?category=sports',
-    title: 'Sports',
+    path: '/clothing?category=gloves',
+    title: 'Gloves',
     image: '/images/sports.png',
-    slug: 'sports',
+    slug: 'gloves',
   },
   {
-    path: '/clothing?category=luxury',
-    title: 'Luxury',
+    path: '/clothing?category=sunglasses',
+    title: 'Sunglasses',
     image: '/images/luxury.png',
-    slug: 'luxury',
+    slug: 'sunglasses',
   },
 ]
 
