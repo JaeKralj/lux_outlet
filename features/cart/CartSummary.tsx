@@ -1,21 +1,42 @@
 'use client'
 
 // import { Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart'
 
 import Button from '@/components/ui/Button'
+import { SyntheticEvent } from 'react'
 
 export default function CartSummary() {
-  const { formattedTotalPrice, totalPrice, cartDetails, cartCount } =
-    useShoppingCart()
+  const router = useRouter()
+  const {
+    formattedTotalPrice,
+    totalPrice,
+    cartDetails,
+    cartCount,
+    redirectToCheckout,
+  } = useShoppingCart()
   const shippingFee = cartCount! > 0 ? 500 : 0
 
-  function onCheckout() {}
+  async function onCheckout(e: SyntheticEvent) {
+    e.preventDefault()
+    const res = await fetch('api/checkout', {
+      method: 'POST',
+      body: JSON.stringify(cartDetails),
+    })
+    const data = await res.json()
+
+    const result = await redirectToCheckout(data.id)
+
+    if (result.error) {
+      console.log(result.error)
+    }
+  }
 
   return (
     <section
       aria-labelledby='summary-heading'
-      className='mt-5 rounded-lg border-2 border-gray-200 shadow px-4 py-6 p-4 rounded-md sm:p-6 lg:basis-1/3 lg:mt-0 lg:p-8 bg-white'
+      className='mt-5 rounded-lg border-2 border-gray-200 shadow px-4 py-6 p-4 sm:p-6 lg:basis-1/3 lg:mt-0 lg:p-8 bg-white'
     >
       <h2 id='summary-heading' className='text-lg font-medium'>
         Order summary
@@ -33,7 +54,7 @@ export default function CartSummary() {
           <dd className='text-sm font-medium'>
             {formatCurrencyString({
               value: shippingFee!,
-              currency: 'NGN',
+              currency: 'USD',
             })}
           </dd>
         </div>
@@ -42,14 +63,14 @@ export default function CartSummary() {
           <dd className='text-base font-medium'>
             {formatCurrencyString({
               value: totalPrice! + shippingFee!,
-              currency: 'NGN',
+              currency: 'USD',
             })}
           </dd>
-        </div>
+        </div>p
       </dl>
 
       <div className='mt-6'>
-        <Button className='w-full'>
+        <Button className='w-full' onClick={e => onCheckout(e!)} type='button'>
           {/* <Loader2 className='mr-2 h-4 w-4 animate-spin' /> */}
           Loading...
         </Button>

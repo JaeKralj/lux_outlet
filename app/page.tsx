@@ -1,15 +1,29 @@
-'use client'
-
 import CategoryCard from '@/components/CategoryCard'
 import ProductCard from '@/components/ProductCard'
-import Button from '@/components/ui/Button'
 import CustomFrag from '@/components/ui/CustomFrag'
-import { DUMMY_INVENTORY, categories } from '@/data'
-import { signIn } from 'next-auth/react'
+import { categories } from '@/data'
+import { SanityProduct } from '@/data/inventory'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 
-export default function Home() {
+export default async function Home() {
   const headingClasses = 'text-black text-lg font-semibold md:text-xl mb-2'
-
+  const products = await client.fetch<SanityProduct[]>(
+    groq`*[_type == "product"] {
+        _id,
+        _createdAt,
+        sku,
+        image,
+        name,
+        price,
+        images,
+        currency,
+        description,
+        "slug": slug.current,
+      }
+    `
+  )
+  console.log(products)
   return (
     <>
       <CustomFrag>
@@ -25,18 +39,17 @@ export default function Home() {
           <section id='featured' className='max-w-5xl mx-auto w-full my-3'>
             <h2 className={headingClasses}>Featured</h2>
             <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-              {DUMMY_INVENTORY.map(({ name, price, image, id, sku }) => (
+              {products.map(({ name, price, image, _id, sku }) => (
                 <ProductCard
                   name={name}
                   price={price}
                   image={image}
-                  id={id}
+                  id={_id}
                   sku={sku}
-                  key={id}
+                  key={_id}
                 />
               ))}
             </div>
-            <Button onClick={() => signIn()}>Sign In</Button>
           </section>
         </div>
       </CustomFrag>

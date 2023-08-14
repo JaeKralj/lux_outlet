@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode } from 'react'
+import { ReactNode, SyntheticEvent } from 'react'
 
 export default function Button({ children, onClick }: propTypes) {
   return (
@@ -15,7 +15,7 @@ export default function Button({ children, onClick }: propTypes) {
 
 type propTypes = {
   children: ReactNode
-  onClick?: () => void
+  onClick?: (e?: SyntheticEvent) => void
   type?: 'button' | 'submit' | 'reset'
   className?: string
 }

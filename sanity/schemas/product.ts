@@ -11,6 +11,11 @@ const product = defineType({
       type: 'string',
     },
     {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -40,15 +45,7 @@ const product = defineType({
       name: 'colors',
       title: 'Colors',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'colorImage', type: 'image' },
-            { name: 'color', type: 'string' },
-          ],
-        },
-      ],
+      of: [{ type: 'string' }],
     },
     {
       name: 'description',
