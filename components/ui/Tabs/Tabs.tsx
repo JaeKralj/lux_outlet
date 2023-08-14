@@ -20,7 +20,10 @@ export default function CustomTabs({
    * ? Return the active tab to parent with a setstate function prop
    */
   return (
-    <Tabs onSelect={i => handleSelect(tabs[i])} defaultIndex={activeTabIndex}>
+    <Tabs
+      onSelect={i => handleSelect && handleSelect(tabs[i])}
+      defaultIndex={activeTabIndex}
+    >
       <TabList className='flex items-center gap-3'>
         {tabs.map(({ content }, i) => (
           <Tab
@@ -62,5 +65,5 @@ interface propTypes {
   tabs: { title: string; content: ReactNode; slug: string }[]
   variant: 'capsule' | 'squircle'
   group: string
-  handleSelect: (tab: any) => void
+  handleSelect?: (tab: any) => void
 }
