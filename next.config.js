@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'fullstackdotso.nyc3.cdn.digitaloceanspaces.com',
+        hostname: 'cdn.sanity.io',
       },
     ],
   },

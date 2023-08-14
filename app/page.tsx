@@ -8,6 +8,7 @@ import { groq } from 'next-sanity'
 
 export default async function Home() {
   const headingClasses = 'text-black text-lg font-semibold md:text-xl mb-2'
+
   const products = await client.fetch<SanityProduct[]>(
     groq`*[_type == "product"] {
         _id,
@@ -23,7 +24,7 @@ export default async function Home() {
       }
     `
   )
-  console.log(products)
+
   return (
     <>
       <CustomFrag>
@@ -31,8 +32,8 @@ export default async function Home() {
           <section id='categories' className='max-w-5xl mx-auto w-full  mt-16'>
             <h1 className={headingClasses}>Categories</h1>
             <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-              {categories.map(({ image, title, path }) => (
-                <CategoryCard path={path} image={image} title={title} />
+              {categories.map(({ image, title, path }, i) => (
+                <CategoryCard path={path} image={image} title={title} key={i} />
               ))}
             </div>
           </section>

@@ -39,10 +39,10 @@ export default function Saved({}: propTypes) {
           <p className='text-center'>
             No items saved{' '}
             <Link
-              href='/categories'
+              href='/clothing'
               className='text-background-100 font-semibold hover:text-background-300'
             >
-              checkout categories
+              checkout items
             </Link>
           </p>
         )}
