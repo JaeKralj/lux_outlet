@@ -1,5 +1,6 @@
 'use client'
 import { cn } from '@/utils'
+import { useSearchParams } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
 import { Tab, TabList, Tabs } from 'react-tabs'
 
@@ -16,7 +17,7 @@ function WrappedTab({
   const styles = getTabStyle(variant, state)
   useEffect(() => {
     active ? setState(true) : setState(false)
-  }, [])
+  }, [active])
   return (
     <Tab
       className={cn('cursor-pointer', styles)}
@@ -27,15 +28,19 @@ function WrappedTab({
   )
 }
 
-export default function CustomTabs({ tabs, variant }: propTypes) {
-  const [activeTabIndex, setActiveTabIndex] = useState(0)
+export default function CustomTabs({ tabs, variant, group }: propTypes) {
+  const searchParams = useSearchParams()
+  const query = searchParams.get(group)
+  const activeTabIndex = query
+    ? tabs.findIndex(({ slug }) => slug === query)
+    : 0
 
+  /**
+   * ? Return the active tab to parent with a setstate function prop
+   */
   return (
-    <Tabs
-      selectedIndex={activeTabIndex}
-      onSelect={index => setActiveTabIndex(index)}
-    >
-      <TabList>
+    <Tabs defaultIndex={activeTabIndex}>
+      <TabList className='flex items-center gap-3'>
         {tabs.map(({ content }, i) => (
           <WrappedTab variant={variant} active={activeTabIndex === i} key={i}>
             {content}
@@ -59,7 +64,7 @@ const getTabStyle = (variant: 'squircle' | 'capsule', state: boolean) => {
       break
     case 'squircle':
       styles =
-        'h-12 aspect-square rounded-md justify-center items-center flex border p-2'
+        'h-14 aspect-square p-2 rounded-md justify-center items-center flex border'
       return cn(styles, state ? 'border-background-300' : 'border-primary-300')
     default:
       break
@@ -67,6 +72,7 @@ const getTabStyle = (variant: 'squircle' | 'capsule', state: boolean) => {
 }
 
 interface propTypes {
-  tabs: { title: string; content: ReactNode }[]
+  tabs: { title: string; content: ReactNode; slug: string }[]
   variant: 'capsule' | 'squircle'
+  group: string
 }

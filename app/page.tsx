@@ -1,8 +1,6 @@
 'use client'
 
 import CategoryCard from '@/components/CategoryCard'
-import Header from '@/components/Headers/Header'
-import HomeHeader from '@/components/Headers/HomeHeader'
 import ProductCard from '@/components/ProductCard'
 import Button from '@/components/ui/Button'
 import CustomFrag from '@/components/ui/CustomFrag'
@@ -14,9 +12,6 @@ export default function Home() {
 
   return (
     <>
-      <Header>
-        <HomeHeader />
-      </Header>
       <CustomFrag>
         <div className='p-3'>
           <section id='categories' className='max-w-5xl mx-auto w-full  mt-16'>
