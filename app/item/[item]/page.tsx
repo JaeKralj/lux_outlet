@@ -1,17 +1,25 @@
-
-import { DUMMY_INVENTORY } from '@/data'
+import { SanityProduct } from '@/data/inventory'
 import ProductInfo from '@/features/cart/ProductInfo'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 
-export default function page({}: propTypes) {
-  const item = DUMMY_INVENTORY[0]
- 
+export default async function page({ searchParams }: propTypes) {
+  const item = await client.fetch<SanityProduct>(
+    groq`*[_type == "product" && _id == "${searchParams.id}"][0]`
+  )
+  console.log(item)
   return (
     <div>
-      <ProductInfo
-      product={item}
-      />
+      <ProductInfo product={item} />
     </div>
   )
 }
 
-type propTypes = {}
+type propTypes = {
+  params: {
+    item: string
+  }
+  searchParams: {
+    id: string
+  }
+}

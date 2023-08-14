@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button'
 import CustomFrag from '@/components/ui/CustomFrag'
 import LikeBtn from '@/components/ui/LikeBtn'
 import Tabs from '@/components/ui/Tabs/Tabs'
+import { urlFor } from '@/sanity/lib/client'
 import Image from 'next/image'
 import { useShoppingCart } from 'use-shopping-cart'
 
@@ -25,7 +26,11 @@ export default function ProductInfo({ product }: propTypes) {
       <div className='flex rounded-b-lg shadow-md'>
         <div className=''>
           <Image
-            src={product.image}
+            src={
+              urlFor(product.image).options.source
+                ? urlFor(product.image).url()
+                : '/images/broken.png'
+            }
             width={640}
             height={256}
             alt='name'

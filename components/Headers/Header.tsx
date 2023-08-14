@@ -8,7 +8,7 @@ export default function Header({}: propTypes) {
   const pathName = usePathname()
   const customHeaders = ['/clothing', '/categories']
 
-  if (pathName === '/studio') return null
+  if (pathName.startsWith('/studio')) return null
   return (
     <header className='w-full text-white mb-14'>
       <nav className='bg-gradient-30deg from-background-100 to-background-200 from-[39.06%] to-[91.15%] h-24 w-full items-center p-3 flex'>

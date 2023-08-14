@@ -1,4 +1,5 @@
 'use client'
+import { urlFor } from '@/sanity/lib/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import LikeBtn from './ui/LikeBtn'
@@ -10,7 +11,6 @@ export default function ProductCard({
   id,
   sku,
 }: propTypes) {
-  console.log({ image, name, price, id, sku })
   return (
     <div className='md:w-80 relative flex items-center'>
       <Link href={`/item/${name}?id=${id}`} className='block'>
@@ -21,7 +21,11 @@ export default function ProductCard({
             </div>
             <div className='h-64 -mx-4 -mt-4 rounded-b-md shadow'>
               <Image
-                src={image}
+                src={
+                  urlFor(image).options.source
+                    ? urlFor(image).url()
+                    : '/images/broken.png'
+                }
                 width={320}
                 height={256}
                 alt={name}
