@@ -1,6 +1,5 @@
 'use client'
 
-// import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart'
 
@@ -70,9 +69,13 @@ export default function CartSummary() {
       </div>
 
       <div className='mt-6'>
-        <Button className='w-full' onClick={e => onCheckout(e!)} type='button'>
-          {/* <Loader2 className='mr-2 h-4 w-4 animate-spin' /> */}
-          Loading...
+        <Button
+          className='w-full'
+          onClick={e => onCheckout(e!)}
+          type='button'
+          title='checkout'
+        >
+          Checkout
         </Button>
       </div>
     </section>
