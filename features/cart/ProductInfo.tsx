@@ -22,8 +22,8 @@ export default function ProductInfo({ product }: propTypes) {
     isIncart ? incrementItem(itm.id) : addItem(itm)
   }
   return (
-    <CustomFrag>
-      <div className='flex rounded-b-lg shadow-md'>
+    <CustomFrag className='p-4'>
+      <div className='flex rounded-b-lg flex-col md:flex-row  shadow-md mb-3'>
         <div className=''>
           <Image
             src={
@@ -77,7 +77,7 @@ export default function ProductInfo({ product }: propTypes) {
             />
           </div>
 
-          <div className='hidden md:block md:flex items-center justify-between'>
+          <div className='hidden md:flex items-center justify-between'>
             <Button onClick={addToCart}>Add to cart</Button>
             <LikeBtn
               item={{ name: product.name, id: product.id, sku: product.sku }}
@@ -85,7 +85,7 @@ export default function ProductInfo({ product }: propTypes) {
           </div>
         </div>
       </div>
-      <div className='my-4 bg-white p-3 rounded-md shadow-md'>
+      <div className='bg-white p-3 rounded-md'>
         <h4 className='text-primary text-base font-semibold md:text-lg'>
           Item Details
         </h4>

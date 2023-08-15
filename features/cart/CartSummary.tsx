@@ -42,32 +42,32 @@ export default function CartSummary() {
         Order summary
       </h2>
 
-      <dl className='mt-6 space-y-4'>
+      <div className='mt-6 space-y-4'>
         <div className='flex items-center justify-between'>
-          <dt className='text-sm'>Subtotal</dt>
-          <dd className='text-sm font-medium'>{formattedTotalPrice}</dd>
+          <p className='text-sm'>Subtotal</p>
+          <p className='text-sm font-medium'>{formattedTotalPrice}</p>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-600'>
-          <dt className='flex items-center text-sm'>
+          <p className='flex items-center text-sm'>
             <span>Shipping estimate</span>
-          </dt>
-          <dd className='text-sm font-medium'>
+          </p>
+          <p className='text-sm font-medium'>
             {formatCurrencyString({
               value: shippingFee!,
               currency: 'USD',
             })}
-          </dd>
+          </p>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-600'>
-          <dt className='text-base font-medium'>Order total</dt>
-          <dd className='text-base font-medium'>
+          <p className='text-base font-medium'>Order total</p>
+          <p className='text-base font-medium'>
             {formatCurrencyString({
               value: totalPrice! + shippingFee!,
               currency: 'USD',
             })}
-          </dd>
-        </div>p
-      </dl>
+          </p>
+        </div>
+      </div>
 
       <div className='mt-6'>
         <Button className='w-full' onClick={e => onCheckout(e!)} type='button'>
