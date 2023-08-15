@@ -1,7 +1,7 @@
 'use client'
 import { cn } from '@/utils'
 import { useSearchParams } from 'next/navigation'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { Tab, TabList, Tabs } from 'react-tabs'
 
 export default function CustomTabs({
@@ -12,17 +12,20 @@ export default function CustomTabs({
 }: propTypes) {
   const searchParams = useSearchParams()
   const query = searchParams.get(group)
-  const activeTabIndex = query
-    ? tabs.findIndex(({ slug }) => slug === query)
-    : 0
+  const [activeTabIndex, setActiveTabIndex] = useState(
+    query ? tabs.findIndex(({ slug }) => slug === query) : 0
+  )
 
   /**
-   * ? Return the active tab to parent with a setstate function prop
+   * todo: Return the active tab to parent with a setstate function prop
    */
   return (
     <Tabs
-      onSelect={i => handleSelect && handleSelect(tabs[i])}
-      defaultIndex={activeTabIndex}
+      onSelect={i => {
+        handleSelect && handleSelect(tabs[i])
+        return setActiveTabIndex(i)
+      }}
+      selectedIndex={activeTabIndex}
     >
       <TabList className='flex items-center gap-3'>
         {tabs.map(({ content }, i) => (
@@ -55,7 +58,7 @@ const getTabStyle = (variant: 'squircle' | 'capsule', state: boolean) => {
     case 'squircle':
       styles =
         'h-14 aspect-square p-2 rounded-md justify-center items-center flex border'
-      return cn(styles, state ? 'border-background-300' : 'border-primary-300')
+      return cn(styles, state ? '!border-background-300' : 'border-primary-300')
     default:
       break
   }

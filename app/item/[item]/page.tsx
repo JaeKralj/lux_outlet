@@ -7,7 +7,7 @@ export default async function page({ searchParams }: propTypes) {
   const item = await client.fetch<SanityProduct>(
     groq`*[_type == "product" && _id == "${searchParams.id}"][0]`
   )
-  console.log(item)
+  
   return (
     <div>
       <ProductInfo product={item} />
