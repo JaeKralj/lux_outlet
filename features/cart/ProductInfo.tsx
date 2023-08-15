@@ -80,7 +80,13 @@ export default function ProductInfo({ product }: propTypes) {
           <div className='hidden md:flex items-center justify-between'>
             <Button onClick={addToCart}>Add to cart</Button>
             <LikeBtn
-              item={{ name: product.name, id: product.id, sku: product.sku }}
+              item={{
+                name: product.name,
+                id: product._id,
+                sku: product.sku,
+                price: product.price,
+                image: product.image,
+              }}
             />
           </div>
         </div>
@@ -100,7 +106,13 @@ export default function ProductInfo({ product }: propTypes) {
         />
         <Button onClick={addToCart}>Add to cart</Button>
         <LikeBtn
-          item={{ name: product.name, id: product.id, sku: product.sku }}
+          item={{
+            name: product.name,
+            id: product._id,
+            sku: product.sku,
+            price: product.price,
+            image: product.image,
+          }}
         />
       </div>
     </CustomFrag>
