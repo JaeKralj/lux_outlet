@@ -2,27 +2,44 @@
 
 import ProductCard from '@/components/ProductCard'
 import CustomFrag from '@/components/ui/CustomFrag'
-import { DUMMY_INVENTORY } from '@/data'
+import { SanityProduct } from '@/data/inventory'
 import useIndexedDB from '@/lib/use-indexeddb/config'
+import { client } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function Saved({}: propTypes) {
   const { getAll } = useIndexedDB()
-  const [items, setItems] = useState<any[] | null>(null)
+  const [items, setItems] = useState<any[]>([])
 
   const getAllLikes = async () => {
     const items = await getAll()
-    let savedItems: any = []
+
+    const products = await client.fetch<SanityProduct[]>(
+      groq`*[_type == 'product' && _id in ${items.map(
+        (itm: any, i) => itm.id
+      )}] {
+        _id,
+        _createdAt,
+        sku,
+        image,
+        name,
+        price,
+        images,
+        currency,
+        description,
+        "slug": slug.current,
+      }
+    `
+    )
+    console.log(products)
 
     if (items.length > 0) {
-      items.forEach((item: any) => {
-        savedItems.push(DUMMY_INVENTORY.find(product => product.id === item.id))
-      })
+      setItems(products)
     } else {
-      setItems(null)
+      setItems([])
     }
-    savedItems.length > 0 ? setItems(savedItems) : setItems(null)
   }
 
   useEffect(() => {
@@ -31,9 +48,9 @@ export default function Saved({}: propTypes) {
   return (
     <CustomFrag className='mt-16'>
       <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-        {items ? (
-          items.map(({ name, price, image, sku, id }) => (
-            <ProductCard {...{ name, price, image, sku, id }} />
+        {items.length > 0 ? (
+          items.map(({ name, price, image, sku, _id }) => (
+            <ProductCard {...{ name, price, image, sku, id: _id }} />
           ))
         ) : (
           <p className='text-center'>

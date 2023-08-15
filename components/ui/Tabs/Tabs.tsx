@@ -2,7 +2,7 @@
 import { cn } from '@/utils'
 import { useSearchParams } from 'next/navigation'
 import { ReactNode, useState } from 'react'
-import { Tab, TabList, Tabs } from 'react-tabs'
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 
 export default function CustomTabs({
   tabs,
@@ -35,11 +35,15 @@ export default function CustomTabs({
               'cursor-pointer',
               getTabStyle(variant, activeTabIndex === i)
             )}
+            key={i}
           >
             {content}
           </Tab>
         ))}
       </TabList>
+      {tabs.map((_, i) => (
+        <TabPanel key={i}>''</TabPanel>
+      ))}
     </Tabs>
   )
 }

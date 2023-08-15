@@ -7,7 +7,6 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 export default function LikeBtn({ item }: propTypes) {
   const [liked, setLiked] = useState(false)
   const { add, getByID, deleteByID } = useIndexedDB()
-
   useEffect(() => {
     const handleLiked = async () => {
       const itm = await getByID(item.id)
@@ -24,7 +23,7 @@ export default function LikeBtn({ item }: propTypes) {
     const itm = await getByID(item.id)
     itm ? deleteByID(item.id) : add(item)
   }
-  
+
   return (
     <button
       title='like_button'
@@ -45,5 +44,5 @@ export default function LikeBtn({ item }: propTypes) {
 }
 
 type propTypes = {
-  item: { name: string; id: string; sku: string }
+  item: { price: number; name: string; image: string; id: string; sku: string }
 }

@@ -38,8 +38,8 @@ export default async function Page({ searchParams }: propTypes) {
       <CustomFrag className='p-3'>
         <SortProducts products={products} />
         <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
-          {products.map(({ name, price, image, sku, id }, i) => (
-            <ProductCard {...{ name, price, image, sku, id }} key={i} />
+          {products.map(({ name, price, image, sku, _id }, i) => (
+            <ProductCard {...{ name, price, image, sku }} id={_id} key={i} />
           ))}
         </div>
       </CustomFrag>
