@@ -1,25 +1,26 @@
-'use client'
+"use client";
 
-import ProductCard from '@/components/ProductCard'
-import CustomFrag from '@/components/ui/CustomFrag'
-import { SanityProduct } from '@/data/inventory'
-import useIndexedDB from '@/lib/use-indexeddb/config'
-import { client } from '@/sanity/lib/client'
-import { groq } from 'next-sanity'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import ProductCard from "@/components/ProductCard";
+import CustomFrag from "@/components/ui/CustomFrag";
+import { SanityProduct } from "@/data/inventory";
+import useIndexedDB from "@/lib/use-indexeddb/config";
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { set } from "sanity";
 
 export default function Saved({}: propTypes) {
-  const { getAll } = useIndexedDB()
-  const [items, setItems] = useState<any[]>([])
+  const { getAll } = useIndexedDB();
+  const [items, setItems] = useState<any[]>([]);
+  const [likes, setLikes] = useState<any[]>([]);
 
   const getAllLikes = async () => {
-    const items = await getAll()
-
+    const items = await getAll();
+    const skus = items.map((itm: any) => itm.sku);
+    const params = { skus };
     const products = await client.fetch<SanityProduct[]>(
-      groq`*[_type == 'product' && _id in ${items.map(
-        (itm: any, i) => itm.id
-      )}] {
+      groq`*[_type == 'product' && sku in $skus] {
         _id,
         _createdAt,
         sku,
@@ -31,33 +32,34 @@ export default function Saved({}: propTypes) {
         description,
         "slug": slug.current,
       }
-    `
-    )
-    console.log(products)
+    `,
+      params
+    );
 
     if (items.length > 0) {
-      setItems(products)
+      setItems(products);
+      setLikes(items);
     } else {
-      setItems([])
+      setItems([]);
     }
-  }
+  };
 
   useEffect(() => {
-    getAllLikes()
-  }, [])
+    getAllLikes();
+  }, [likes]);
   return (
-    <CustomFrag className='mt-16'>
-      <div className='flex flex-wrap gap-3 justify-center md:justify-normal'>
+    <CustomFrag>
+      <div className="flex flex-wrap gap-3 justify-center md:justify-normal">
         {items.length > 0 ? (
-          items.map(({ name, price, image, sku, _id }) => (
-            <ProductCard {...{ name, price, image, sku, id: _id }} />
+          items.map(({ name, price, image, sku, _id }, i) => (
+            <ProductCard {...{ name, price, image, sku, id: _id }} key={i} />
           ))
         ) : (
-          <p className='text-center'>
-            No items saved{' '}
+          <p className="text-center">
+            No items saved{" "}
             <Link
-              href='/clothing'
-              className='text-background-100 font-semibold hover:text-background-300'
+              href="/clothing"
+              className="text-background-100 font-semibold hover:text-background-300"
             >
               checkout items
             </Link>
@@ -65,7 +67,7 @@ export default function Saved({}: propTypes) {
         )}
       </div>
     </CustomFrag>
-  )
+  );
 }
 
-type propTypes = {}
+type propTypes = {};

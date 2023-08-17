@@ -7,7 +7,7 @@ export default function CategoryCard({ image, title, path }: propTypes) {
     <FadeInOnScroll>
       <Link
         href={path}
-        className='md:w-80 block basis-full md:basis-auto group overflow-hidden'
+        className='w-80 block basis-full md:basis-auto group overflow-hidden'
       >
         <div className='md:h-96 h-32 md:w-full after:bg-black after:h-full after:w-full relative after:absolute after:inset-0 after:opacity-40 flex justify-center items-center rounded-xl after:rounded-[inherit]'>
           <Image
