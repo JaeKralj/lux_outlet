@@ -12,7 +12,7 @@ import { set } from "sanity";
 
 export default function Saved({}: propTypes) {
   const { getAll } = useIndexedDB();
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<any[] | null>(null);
   const [likes, setLikes] = useState<any[]>([]);
 
   const getAllLikes = async () => {
@@ -50,7 +50,7 @@ export default function Saved({}: propTypes) {
   return (
     <CustomFrag>
       <div className="flex flex-wrap gap-3 justify-center md:justify-normal">
-        {items.length > 0 ? (
+        {items && items.length > 0 ? (
           items.map(({ name, price, image, sku, _id }, i) => (
             <ProductCard {...{ name, price, image, sku, id: _id }} key={i} />
           ))
