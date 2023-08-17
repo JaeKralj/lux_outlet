@@ -42,7 +42,7 @@ export default function CustomTabs({
         ))}
       </TabList>
       {tabs.map((_, i) => (
-        <TabPanel key={i}>''</TabPanel>
+        <TabPanel key={i} className='hidden'></TabPanel>
       ))}
     </Tabs>
   )

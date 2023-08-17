@@ -19,7 +19,7 @@ export default function CartSummary() {
 
   async function onCheckout(e: SyntheticEvent) {
     e.preventDefault()
-    const res = await fetch('api/checkout', {
+    const res = await fetch('/api/checkout', {
       method: 'POST',
       body: JSON.stringify(cartDetails),
     })

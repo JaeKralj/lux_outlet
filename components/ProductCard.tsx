@@ -14,7 +14,7 @@ export default function ProductCard({
 }: propTypes) {
   return (
     <FadeInOnScroll>
-      <div className='md:w-80 relative flex items-center'>
+      <div className='md:w-80 w-[19.375rem] relative flex items-center'>
         <Link
           href={`/item/${name}?id=${id}`}
           className='block group overflow-hidden'
