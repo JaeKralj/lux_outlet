@@ -8,7 +8,6 @@ import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { set } from "sanity";
 
 export default function Saved({}: propTypes) {
   const { getAll } = useIndexedDB();
