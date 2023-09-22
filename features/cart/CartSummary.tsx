@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation'
 import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart'
 
 import Button from '@/components/ui/Button'
-import { SyntheticEvent } from 'react'
+import ScaleLoader from 'react-spinners/ScaleLoader'
+import { SyntheticEvent, useState } from 'react'
 
 export default function CartSummary() {
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const {
     formattedTotalPrice,
@@ -19,6 +21,7 @@ export default function CartSummary() {
 
   async function onCheckout(e: SyntheticEvent) {
     e.preventDefault()
+    setLoading(true)
     const res = await fetch('/api/checkout', {
       method: 'POST',
       body: JSON.stringify(cartDetails),
@@ -28,6 +31,7 @@ export default function CartSummary() {
     const result = await redirectToCheckout(data.id)
 
     if (result.error) {
+      setLoading(false)
       console.log(result.error)
     }
   }
@@ -75,7 +79,15 @@ export default function CartSummary() {
           type='button'
           title='checkout'
         >
-          Checkout
+          {!loading && 'Checkout'}
+          {loading && (
+            <ScaleLoader
+              color={'#ffffff'}
+              loading={loading}
+              aria-label='Loading Spinner'
+              data-testid='loader'
+            />
+          )}
         </Button>
       </div>
     </section>
